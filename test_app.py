@@ -14,7 +14,7 @@ def test_health(client):
 
 def test_sum(client):
     res = client.post('/sum', json={"a": 5, "b": 10})
-    assert res.get_json()["result"] == 999
+    assert res.get_json()["result"] == 15
 
 
 def test_reverse(client):
@@ -44,3 +44,6 @@ def test_reverse_single_char(client):
 def test_sum_missing_values(client):
     res = client.post('/sum', json={})
     assert res.get_json()["result"] == 0
+def test_sum_invalid_input(client):
+    res = client.post('/sum', json={"a": "x", "b": 5})
+    assert res.status_code == 400
