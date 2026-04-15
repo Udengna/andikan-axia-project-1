@@ -23,7 +23,12 @@ def get_sum():
 @app.route('/reverse-string', methods=['POST'])
 def reverse_string():
     data = request.get_json() or {}
+
     text = data.get('text', "")
+
+    if not isinstance(text, str):
+        return jsonify({"error": "Text must be a string"}), 400
+
     return jsonify({"result": text[::-1]})
 
 
