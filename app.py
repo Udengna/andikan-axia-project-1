@@ -10,14 +10,14 @@ def health():
 
 @app.route('/sum', methods=['POST'])
 def get_sum():
-    data = request.get_json()
+    data = request.get_json() or {}
     result = data.get('a', 0) + data.get('b', 0)
     return jsonify({"result": result})
 
 
 @app.route('/reverse-string', methods=['POST'])
 def reverse_string():
-    data = request.get_json()
+    data = request.get_json() or {}
     text = data.get('text', "")
     return jsonify({"result": text[::-1]})
 
