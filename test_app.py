@@ -12,10 +12,9 @@ def test_health(client):
     assert res.status_code == 200
     assert res.get_json() == {"status": "UP"}
 
-
 def test_sum(client):
     res = client.post('/sum', json={"a": 5, "b": 10})
-    assert res.get_json()["result"] == 15
+    assert res.get_json()["result"] == 999
 
 
 def test_reverse(client):
